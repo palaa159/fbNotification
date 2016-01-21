@@ -1,0 +1,16 @@
+{
+  "name": "facebook-notification",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "PORT=4000 FB_USER=vinceikea@gmail.com FB_PASS=Fuck99flies node app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.13.3",
+    "facebook-chat-api": "^1.0.5"
+  }
+}
