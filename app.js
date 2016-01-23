@@ -53,12 +53,16 @@ s.use(bodyParser.json())
 var goToSettingMessage = '\n\nขณะนี้เรากำลังทดสอบระบบการแจ้งเตือนด้วย Facebook ท่านสามารถเข้าไปปรับค่า Setting การรับข้อความได้ในเมนู "ตั้งค่า" ใน Account Fastwork.co ของท่าน'
 
 function newMessage(req, res) {
-	extractAndBitly(req.body.message, function(extracted) {
-		observable.send(extracted + goToSettingMessage, req.body.id)
-		res.json({
-			success: true
-		})
+	observable.send(req.body.message + goToSettingMessage, req.body.id)
+	res.json({
+		success: true
 	})
+	// extractAndBitly(req.body.message, function(extracted) {
+	// 	observable.send(extracted + goToSettingMessage, req.body.id)
+	// 	res.json({
+	// 		success: true
+	// 	})
+	// })
 }
 
 // Extract message and bitly the link
