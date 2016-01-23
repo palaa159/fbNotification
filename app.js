@@ -23,6 +23,23 @@ fb({
 	api.setOptions({
 		forceLogin: true
 	})
+
+	observable.on('find', function(obj) {
+		console.log(obj)
+		if (obj) {
+			api.getUserID(obj.email, function(err, data) {
+				if (err) return obj.cb(err);
+
+				// Send the message to the best match (best by Facebook's criteria)
+				if(obj.cb) {
+					obj.cb(data[0].userID)
+					// Returning user: 1 or user: 0
+				}
+			})
+		}
+
+	})
+
 	observable.on('send', function(obj) {
 		api.sendMessage(obj.message, obj.id, function(err) {
 			if (err) {
@@ -45,12 +62,23 @@ s.use(bodyParser.json())
 		extended: false
 	}))
 	.post('/message', newMessage)
+	.post('/findUser', findUser)
 	.listen(4555, function() {
 
 	})
 
 // Callbacks
 var goToSettingMessage = '\n\nขณะนี้เรากำลังทดสอบระบบการแจ้งเตือนด้วย Facebook ท่านสามารถเข้าไปปรับค่า Setting การรับข้อความได้ในเมนู "ตั้งค่า" ใน Account Fastwork.co ของท่าน'
+
+function findUser(req, res) {
+	observable.find(req.body.email, function(userId) {
+		res.json({
+			success: true,
+			realFbId: userId
+		})
+	})
+
+}
 
 function newMessage(req, res) {
 	observable.send(req.body.message + goToSettingMessage, req.body.id)

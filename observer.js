@@ -2,17 +2,24 @@
 var util = require('util');
 var EventEmitter = require('events').EventEmitter;
 
-function messageTrigger() {
+function trigger() {
 	EventEmitter.call(this);
 }
 
-messageTrigger.prototype.send = function(message, id) {
+trigger.prototype.find = function(email, cb) {
+	this.emit('find', {
+		email: email,
+		cb: cb
+	})
+}
+
+trigger.prototype.send = function(message, id) {
 	this.emit('send', {
 		message: message,
 		id: id
 	});
 }
 
-util.inherits(messageTrigger, EventEmitter);
+util.inherits(trigger, EventEmitter);
 
-module.exports = messageTrigger
+module.exports = trigger
