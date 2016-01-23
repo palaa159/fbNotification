@@ -19,6 +19,10 @@ fb({
 }, function callback(err, api) {
 	if (err) return console.error(err)
 		// Custom observable
+	console.log('Forcing Login...')
+	api.setOptions({
+		forceLogin: true
+	})
 	observable.on('send', function(obj) {
 		api.sendMessage(obj.message, obj.id, function(err) {
 			if (err) {
