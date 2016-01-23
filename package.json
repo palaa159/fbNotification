@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "PORT=4000 FB_USER=vinceikea@gmail.com FB_PASS=Fuck99flies nodemon app.js"
+    "start": "FB_USER=vinceikea@gmail.com FB_PASS=Fuck99flies nodemon app.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bitly": "^4.1.1",
+    "body-parser": "^1.14.2",
     "express": "^4.13.3",
-    "facebook-chat-api": "^1.0.5"
+    "facebook-chat-api": "^1.0.5",
+    "urijs": "^1.17.0"
   }
 }
